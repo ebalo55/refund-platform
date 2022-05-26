@@ -17,9 +17,26 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('tailwindcss'),
     ])
     .alias({
-        '@': 'resources/js',
-    });
+        '@': 'resources/js'
+    })
+    .webpackConfig({
+        resolve: {
+            fallback: {
+                "stream": require.resolve("stream-browserify"),
+                "crypto": require.resolve("crypto-browserify"),
+                "http": require.resolve("stream-http"),
+                "https": require.resolve("https-browserify"),
+                "os": require.resolve("os-browserify/browser"),
+            },
+        },
+    })
+    .copyDirectory("resources/assets", "public/assets");
 
 if (mix.inProduction()) {
     mix.version();
+}
+
+if (!mix.inProduction()) {
+    mix.disableNotifications();
+    mix.browserSync('localhost:8000');
 }

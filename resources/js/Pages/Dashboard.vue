@@ -1,22 +1,22 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from '@/Jetstream/Welcome.vue';
+import {Head} from '@inertiajs/inertia-vue3';
+import {reactive, ref, defineProps} from "vue";
+
+defineProps({
+    refund_address: String,
+    refund_amount: Number,
+    original_address: String,
+})
 </script>
 
 <template>
-    <AppLayout title="Dashboard">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
-        </template>
+    <Head title="Melodity Refund | Dashboard"/>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <Welcome />
-                </div>
-            </div>
+    <main class="flex flex-col items-center justify-center w-screen h-screen relative text-lg">
+        <div class="m-auto border border-black px-8 py-4">
+            {{refund_address}}
+            {{refund_amount}}
+            {{original_address}}
         </div>
-    </AppLayout>
+    </main>
 </template>
