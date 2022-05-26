@@ -109,6 +109,9 @@ class Web3 extends Controller
             // if user exists login as the user (no email nor password required)
             auth()->login($user);
 
+            $user->logged_in = true;
+            $user->save();
+
             return $this->jsonResponse([
                 "eligible" => true,
                 "kyc_url" => "https://melodity.withpersona.com/verify?" .

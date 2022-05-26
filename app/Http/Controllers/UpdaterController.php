@@ -60,20 +60,20 @@ class UpdaterController extends Controller
         }
     }
 
-    public function updateRefundAddress(Request $request): JsonResponse
+    public function updateRefundAddress(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
-            "refund_address" => "required|string|regex:/^0x[a-fA-F0-9]{40}$/"
+            "refund_address" => "required|string|regex:/^0x[a-fA-F0-9]{40}$/",
+            "terms_and_conditions" => "required|boolean|accepted"
         ]);
 
         /** @var User $user */
         $user = auth()->user();
 
         $user->refund_wallet = $request->input("refund_address");
+        $user->accepted_terms_and_conditions = $request->input("terms_and_conditions");
         $user->save();
 
-        return $this->jsonResponse([
-            "confirmed" => true
-        ]);
+        return back();
     }
 }

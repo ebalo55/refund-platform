@@ -1,6 +1,4 @@
 <template>
-    <Head title="Melodity Refund"/>
-
     <main class="flex flex-col items-center justify-center w-screen h-screen relative text-lg">
         <button class="border border-black px-10 py-4 m-auto transition-all duration-500 hover:px-12
             hover:py-6 hover:text-xl" @click.stop.prevent="connectWallet">

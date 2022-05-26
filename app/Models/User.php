@@ -31,10 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
+        'persona_references'
     ];
 
     /**
@@ -43,7 +40,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'accepted_terms_and_conditions' => 'boolean',
+        'logged_in' => 'boolean',
     ];
 
     /**
@@ -51,7 +49,5 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $appends = [
-        'profile_photo_url',
-    ];
+    protected $appends = [];
 }

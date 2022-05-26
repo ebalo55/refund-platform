@@ -17,6 +17,9 @@ use Inertia\Inertia;
 |
 */
 
+Route::permanentRedirect("login", "/")->name("login");
+Route::permanentRedirect("register", "/")->name("register");
+
 Route::get('/', function () {
     return Inertia::render('Welcome');
 });
