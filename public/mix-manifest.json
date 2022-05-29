@@ -1,5 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/assets/binance.png": "/assets/binance.png"
+    "/assets/binance.png": "/assets/binance.png",
+    "/assets/error.svg": "/assets/error.svg",
+    "/assets/logomelodity.webp": "/assets/logomelodity.webp",
+    "/assets/logomeloditydark.png": "/assets/logomeloditydark.png",
+    "/assets/spinner-svgrepo-com.svg": "/assets/spinner-svgrepo-com.svg",
+    "/assets/success.svg": "/assets/success.svg"
 }

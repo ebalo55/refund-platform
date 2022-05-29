@@ -1,12 +1,21 @@
 <template>
-    <main class="flex flex-col items-center justify-center w-screen h-screen relative text-lg">
-        <button class="border border-black px-10 py-4 m-auto transition-all duration-500 hover:px-12
-            hover:py-6 hover:text-xl" @click.stop.prevent="connectWallet">
-            Connect wallet
-        </button>
-        <div>{{confirmation}}</div>
-        <div>{{errors}}</div>
-    </main>
+    <GradientBackground class="w-screen h-screen text-lg font-bold relative">
+        <Header/>
+        <main class="flex items-center justify-center">
+            <GlassCard class="flex flex-col justify-center items-center ml-5 mr-5 py-40 px-20">
+                <button v-if="!confirmation.visible"
+                        class="bg-black px-10 rounded-full py-4 m-auto transition-all duration-500 hover:px-12
+                                hover:py-6 hover:text-xl"
+                        @click.stop.prevent="connectWallet">
+                    Connect wallet
+                </button>
+                <p v-if="confirmation.visible" class="mt-10 text-xl text-gray-900">{{ confirmation.msg }}</p>
+                <p v-if="confirmation.visible"
+                   class=" text-center my-5 text-3xl text-gray-900">{{ confirmation.remaining_seconds }}</p>
+                <span class="text-red-500 text-xl" v-if="errors.visible">{{ errors.msg }}</span>
+            </GlassCard>
+        </main>
+    </GradientBackground>
 </template>
 
 <script setup>
@@ -15,6 +24,9 @@ import {reactive, ref} from "vue";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3Modal from "web3modal";
 import {ethers} from "ethers";
+import GradientBackground from "../Components/GradientBackground";
+import Header from "../Components/Header";
+import GlassCard from "../Components/GlassCard";
 
 const message = ref("")
 const errors = reactive({
@@ -30,7 +42,7 @@ const confirmation = reactive({
 })
 
 const hasError = (response) => {
-    if(response.data.status !== "success") {
+    if (response.data.status !== "success") {
         errors.msg = response.data.errors[0].message
         errors.code = response.data.errors[0].code
 
@@ -44,8 +56,7 @@ const getMessage = async () => {
     try {
         response = await axios.get(route("public.get.web3.message"))
         message.value = response.data.data.message
-    }
-    catch (e) {
+    } catch (e) {
         hasError(e.response)
     }
 }
@@ -97,15 +108,14 @@ const connectWallet = async () => {
     const provider = new ethers.providers.Web3Provider(instance);
     await getMessage()
     // an error occurred while retrieving the message, stop here
-    if(errors.code !== 0) {
+    if (errors.code !== 0) {
         return
     }
 
     let signature
     try {
         signature = await provider.getSigner().signMessage(message.value)
-    }
-    catch (e) {
+    } catch (e) {
         errors.msg = e.message
         errors.code = e.code
         return
@@ -118,24 +128,25 @@ const connectWallet = async () => {
             address: await provider.getSigner().getAddress()
         })
 
-        if(response.data.data.eligible) {
+        if (response.data.data.eligible) {
             confirmation.visible = true
-            confirmation.interval_id = setInterval(() => { redirectToKYC(response.data.data.kyc_url) }, 1000)
+            confirmation.interval_id = setInterval(() => {
+                redirectToKYC(response.data.data.kyc_url)
+            }, 1000)
         }
         console.log(response.data)
-    }
-    catch (e) {
+    } catch (e) {
         hasError(e.response)
     }
 }
 
 const redirectToKYC = (url) => {
-    if(confirmation.remaining_seconds > 0) {
+    if (confirmation.remaining_seconds > 0) {
         confirmation.remaining_seconds--
-    }
-    else {
+    } else {
         clearInterval(confirmation.interval_id)
         location.href = url
     }
 }
+
 </script>
