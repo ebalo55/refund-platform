@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CollectorController;
 use App\Http\Controllers\UpdaterController;
 use App\Http\Controllers\Web3;
 use Illuminate\Foundation\Application;
@@ -28,6 +29,9 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
 ])->group(function () {
+    Route::get('/identify', [CollectorController::class, "renderCollectInformationPage"])->name('authenticated.get.collector.identify');
+    Route::post('/identify', [CollectorController::class, "collectInformation"])->name('authenticated.post.collector.identify');
+
     Route::get('/dashboard', [UpdaterController::class, "displayDashboard"])->name('authenticated.get.updater.dashboard');
     Route::post('/address', [UpdaterController::class, "updateRefundAddress"])->name('authenticated.post.updater.update_address');
 });

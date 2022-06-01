@@ -14,6 +14,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use kornrunner\Keccak;
 use Throwable;
@@ -40,12 +41,12 @@ class Web3 extends Controller
      */
     public function message(): JsonResponse
     {
-        if (
+        /*if (
             session()->has(self::SESSION_SIGN_MESSAGE_KEY) &&
             !$this->canRequestNewMessage()
         ) {
             throw new MessageSignatureCooloffPeriod($this->remaining_seconds);
-        }
+        }*/
 
         $nonce = Str::random(32);
         $message = "Sign this message to confirm you own this wallet address.\n" .
@@ -80,13 +81,13 @@ class Web3 extends Controller
         ]);
 
         if (!session()->has(self::SESSION_SIGN_MESSAGE_KEY)) {
-            throw new MissingSignatureVerificationData();
+	        return back()->withErrors((new MissingSignatureVerificationData())->getMessage());
         }
 
         // if the user can request a new message means that the current message time to live is elapsed so the message
         // is considered unverifiable
         if ($this->canRequestNewMessage()) {
-            throw new SignatureRequestElapsed();
+	        return back()->withErrors((new SignatureRequestElapsed())->getMessage());
         }
 
         $address = $request->input('address');
@@ -103,7 +104,7 @@ class Web3 extends Controller
 
             // if user is not registered create a simple on the fly registration and log in immediately
             if (is_null($user)) {
-                throw new UserNotEligibleForRefund();
+	            return back()->withErrors((new UserNotEligibleForRefund())->getMessage());
             }
 
             // if user exists login as the user (no email nor password required)
@@ -112,17 +113,10 @@ class Web3 extends Controller
             $user->logged_in = true;
             $user->save();
 
-            return $this->jsonResponse([
-                "eligible" => true,
-                "kyc_url" => "https://melodity.withpersona.com/verify?" .
-                    "inquiry-template-id=itmpl_qsPvbUsTWT1fv6wWPSM3pjXB&" .
-                    "environment=" . (config("app.env") === "production" ? "production" : "sandbox") . "&" .
-                    "reference-id={$address}_" . now()->getTimestamp() . "&" .
-                    "redirect-uri=" . route("authenticated.get.updater.dashboard")
-            ]);
+            return redirect()->route("authenticated.get.collector.identify");
         }
 
-        throw new UnverifiableSignature();
+        return back()->withErrors((new UnverifiableSignature())->getMessage());
     }
 
     /**

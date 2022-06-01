@@ -19,6 +19,7 @@ const form = useForm({
 })
 
 const update = async () => {
+	completed.value = false
     form.post(route("authenticated.post.updater.update_address"), {
         onSuccess: params => {
             completed.value = true
@@ -65,7 +66,7 @@ const update = async () => {
                 <div class="flex flex-col justify-center mt-10">
                     <div class="flex items-end justify-between">
                         <h3 class="text-lg">Refund rate:</h3>
-                        <span class="ml-5 text-3xl text-violet-500 font-bold">30%</span>
+                        <span class="ml-5 text-3xl text-violet-500 font-bold">40%</span>
                     </div>
                     <div class="flex items-end justify-between">
                         <h3 class="text-lg">You'll get back:</h3>
@@ -75,26 +76,13 @@ const update = async () => {
                     </div>
                 </div>
 
-                <div class="flex items-center mt-10">
-                    <input
-                        class="h-6 w-6 focus:border-0 focus:ring focus:ring-violet-500 focus:ring-opacity-50
-                        checked:bg-gray-800 cursor-pointer"
-                        type="checkbox" v-model="form.terms_and_conditions"
-                        id="terms-and-conditions">
-                    <label class="ml-4 cursor-pointer" for="terms-and-conditions">
-                        Accept
-                        <a href="#" class="text-blue-500 underline underline-offset-1">terms and condition</a>
-                        of service
-                    </label>
-                </div>
-
                 <div class="flex flex-col justify-center items-center">
                     <button class="w-full bg-black mt-10 px-10 rounded-full flex justify-center items-center py-4 m-auto transition-all duration-500 hover:px-12
                                 hover:py-6 hover:text-xl text-white"
                             @click.capture.stop="update" :disabled="form.processing">
                         <img v-if="form.processing" class="w-5 h-5 text-white animate-spin"
                              src="../../assets/spinner-svgrepo-com.svg">
-                        <span :class="{'ml-2':form.processing}">{{ form.processing ? 'Processing...' : 'Submit' }}</span>
+                        <span :class="{'ml-2':form.processing}">{{ form.processing ? 'Processing...' : 'Save' }}</span>
                     </button>
                 </div>
 
