@@ -67,22 +67,22 @@ const redirectToKYC = (url) => {
 				</div>
 
 				<div class="flex flex-col">
-					<label class="ml-5">First name</label>
+					<label class="ml-4">First name</label>
 					<input type="text"
 					       class="rounded-full text-b font-bold text-xl h-16 bg-white backdrop shadow-lg bg-opacity-30
                            border-0 p-4 focus:border-0 focus:ring focus:ring-violet-500 focus:ring-opacity-50"
 					       placeholder="John" v-model="form.first_name">
-					<small class="text-xs text-gray-600">
+					<small class="text-xs text-gray-600 mt-1 ml-4">
 						Insert your first name as stated in your ID.
 					</small>
 				</div>
 				<div class="flex flex-col mt-4">
-					<label class="ml-5">Last name</label>
+					<label class="ml-4">Last name</label>
 					<input type="text"
 					       class="rounded-full text-b font-bold text-xl h-16 bg-white backdrop shadow-lg bg-opacity-30
                            border-0 p-4 focus:border-0 focus:ring focus:ring-violet-500 focus:ring-opacity-50"
 					       placeholder="Doe" v-model="form.last_name">
-					<small class="text-xs text-gray-600">
+					<small class="text-xs text-gray-600 ml-4 mt-1">
 						Insert your last name as stated in your ID.
 					</small>
 				</div>
