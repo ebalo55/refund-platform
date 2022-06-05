@@ -22,9 +22,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string $refund_amount
  * @property bool $accepted_terms_and_conditions
  * @property bool $logged_in
+ * @property bool $refund_completed
  * @property string $persona_references
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read int|null $activities_count
  * @property-read string $profile_photo_url
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
@@ -43,6 +46,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereOriginalWallet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePersonaReferences($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRefundAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRefundCompleted($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRefundWallet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
@@ -80,6 +84,7 @@ class User extends Authenticatable
     protected $casts = [
         'accepted_terms_and_conditions' => 'boolean',
         'logged_in' => 'boolean',
+        'refund_completed' => 'boolean',
     ];
 
     /**

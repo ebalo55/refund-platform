@@ -3,7 +3,6 @@
 use App\Http\Controllers\CollectorController;
 use App\Http\Controllers\UpdaterController;
 use App\Http\Controllers\Web3;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -33,6 +32,7 @@ Route::middleware([
     Route::post('/identify', [CollectorController::class, "collectInformation"])->name('authenticated.post.collector.identify');
 
     Route::get('/dashboard', [UpdaterController::class, "displayDashboard"])->name('authenticated.get.updater.dashboard');
+    Route::get('/refund-state', [UpdaterController::class, "isRefundCompleted"])->name('authenticated.get.updater.refund_completed');
     Route::post('/address', [UpdaterController::class, "updateRefundAddress"])->name('authenticated.post.updater.update_address');
 });
 
