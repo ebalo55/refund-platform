@@ -14,11 +14,12 @@ async function run() {
     })*/
 
     // MAINNET
-    const provider = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org", {
+    const provider = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/", {
         chainId: 56,
         name: "binance",
     })
 
+    console.log(process.env.WALLET_PRIVATE_KEY)
     const wallet = new ethers.Wallet(process.env.WALLET_PRIVATE_KEY, provider)
     const big_amount = json.amount.toString().replace(".", "").replace(/^0*/, "")
 
