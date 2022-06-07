@@ -90,7 +90,7 @@ onMounted(checkRefundCompleted)
 				<div class="flex flex-col justify-center mt-10">
 					<div class="flex items-end justify-between">
 						<h3 class="text-lg">Refund rate:</h3>
-						<span class="ml-5 text-3xl text-violet-500 font-bold">40%</span>
+						<span class="ml-5 text-3xl text-violet-500 font-bold">35%</span>
 					</div>
 					<div class="flex items-end justify-between">
 						<h3 class="text-lg">You'll get back:</h3>
