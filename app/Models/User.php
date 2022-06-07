@@ -21,6 +21,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string $refund_wallet
  * @property string $refund_amount
  * @property bool $accepted_terms_and_conditions
+ * @property bool $accepted_waiver_of_liability
  * @property bool $logged_in
  * @property bool $refund_completed
  * @property string $persona_references
@@ -38,6 +39,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAcceptedTermsAndConditions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAcceptedWaiverOfLiability($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereFirstName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
@@ -83,6 +85,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'accepted_terms_and_conditions' => 'boolean',
+        'accepted_waiver_of_liability' => 'boolean',
         'logged_in' => 'boolean',
         'refund_completed' => 'boolean',
     ];

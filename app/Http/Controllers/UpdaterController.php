@@ -71,7 +71,7 @@ class UpdaterController extends Controller
 
 				return inertia("Dashboard", [
 					"refund_address"   => $user->refund_wallet,
-					"refund_amount"    => floatval($user->refund_amount) * 0.4,
+					"refund_amount"    => floatval($user->refund_amount) * 0.35,
 					"original_address" => $user->original_wallet,
 				]);
 			}

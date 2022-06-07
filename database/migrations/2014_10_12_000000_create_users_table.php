@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('refund_wallet');
             $table->string('refund_amount');
             $table->boolean('accepted_terms_and_conditions')->default(false);
+            $table->boolean('accepted_waiver_of_liability')->default(false);
             $table->boolean('logged_in')->default(false);
 			$table->boolean('refund_completed')->default(false);
             $table->json('persona_references')->default("[]");

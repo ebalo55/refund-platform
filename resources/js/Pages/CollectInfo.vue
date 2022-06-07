@@ -28,7 +28,8 @@ const confirmation = reactive({
 const form = useForm({
 	first_name: props.first_name,
 	last_name: props.last_name,
-	terms_and_conditions: false,
+	terms_and_conditions: true,
+	liability: true,
 })
 
 const identify = async () => {
@@ -67,7 +68,10 @@ const redirectToKYC = (url) => {
 				</div>
 
 				<div class="flex flex-col">
-					<label class="ml-4">First name</label>
+					<label class="ml-4">
+						First name
+						<sup class="text-red-500">*</sup>
+					</label>
 					<input type="text"
 					       class="rounded-full text-b font-bold text-xl h-16 bg-white backdrop shadow-lg bg-opacity-30
                            border-0 p-4 focus:border-0 focus:ring focus:ring-violet-500 focus:ring-opacity-50"
@@ -77,7 +81,10 @@ const redirectToKYC = (url) => {
 					</small>
 				</div>
 				<div class="flex flex-col mt-4">
-					<label class="ml-4">Last name</label>
+					<label class="ml-4">
+						Last name
+						<sup class="text-red-500">*</sup>
+					</label>
 					<input type="text"
 					       class="rounded-full text-b font-bold text-xl h-16 bg-white backdrop shadow-lg bg-opacity-30
                            border-0 p-4 focus:border-0 focus:ring focus:ring-violet-500 focus:ring-opacity-50"
@@ -87,16 +94,38 @@ const redirectToKYC = (url) => {
 					</small>
 				</div>
 
-				<div class="flex items-center mt-10">
+				<div class="flex items-center mt-10 text-xs">
 					<input
-						class="h-6 w-6 focus:border-0 focus:ring focus:ring-violet-500 focus:ring-opacity-50
+						class="h-4 w-4 focus:border-0 focus:ring focus:ring-violet-500 focus:ring-opacity-50
                         checked:bg-gray-800 cursor-pointer"
 						type="checkbox" v-model="form.terms_and_conditions"
 						id="terms-and-conditions">
 					<label class="ml-4 cursor-pointer" for="terms-and-conditions">
-						Accept
-						<a href="#" class="text-blue-500 underline underline-offset-1">terms and condition</a>
-						of service
+						I acknowledge that I have read and accepted the
+						<a href="https://ico.melodity.org/terms-and-conditions"
+						   class="text-blue-500 underline underline-offset-1"
+						   target="_blank" rel="noopener">
+							terms and conditions of service
+						</a>.
+						<sup class="text-red-500">*</sup>
+					</label>
+				</div>
+
+				<div class="flex items-center mt-2 text-xs">
+					<input
+						class="h-4 w-4 focus:border-0 focus:ring focus:ring-violet-500 focus:ring-opacity-50
+                        checked:bg-gray-800 cursor-pointer"
+						type="checkbox" v-model="form.liability"
+						id="liability">
+					<label class="ml-4 cursor-pointer" for="liability">
+						I accept the
+						<a href="/assets/Waiver-of-Liabilities.pdf"
+						   class="text-blue-500 underline underline-offset-1"
+						   target="_blank">
+							waiver of liability
+						</a>
+						attached hereby.
+						<sup class="text-red-500">*</sup>
 					</label>
 				</div>
 
