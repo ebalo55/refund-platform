@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CollectorController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\UpdaterController;
 use App\Http\Controllers\Web3;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,7 @@ use Inertia\Inertia;
 Route::permanentRedirect("login", "/");
 Route::permanentRedirect("register", "/");
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-});
+Route::get('/', [Controller::class, "landing"]);
 
 Route::middleware([
     'auth:sanctum',
