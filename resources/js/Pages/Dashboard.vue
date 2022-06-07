@@ -76,13 +76,13 @@ onMounted(checkRefundCompleted)
 				</div>
 
 				<div class="flex flex-col">
-					<label class="ml-5">Refund address</label>
+					<label class="ml-4">Refund address</label>
 					<input type="text"
 					       class="rounded-full text-b font-bold text-xl h-16 bg-white backdrop shadow-lg bg-opacity-30
                            border-0 p-4 focus:border-0 focus:ring focus:ring-violet-500 focus:ring-opacity-50"
 					       placeholder="0x000000..." v-model="form.refund_address">
-					<small class="text-xs text-gray-600 mt-4">Originally {{ original_address }}</small>
-					<small class="text-xs text-gray-600">
+					<small class="text-xs text-gray-600 ml-4 mt-1 mr-4">Originally {{ original_address }}</small>
+					<small class="text-xs text-gray-600 ml-4 mr-4">
 						this wallet is the only allowed to change the refund address.
 					</small>
 				</div>
