@@ -54,7 +54,7 @@ class EmitPaymentJob implements ShouldQueue, ShouldBeUnique
 			$node = $node_finder->find("node");
 
 			// Runs the refund node process using symphony process
-			$process = new Process([$node, __DIR__ . "/../../refund.js", $json_data], __DIR__, timeout: null);
+			$process = new Process([$node, __DIR__ . "/../../refund.js", $json_data, env("WALLET_PRIVATE_KEY")], __DIR__, timeout: null);
 			$process->setOptions(['create_new_console' => true]);
 			$process->run();
 			if ($process->isSuccessful()) {

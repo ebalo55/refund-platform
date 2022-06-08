@@ -5,6 +5,7 @@ dotenv.config()
 
 async function run() {
     const json_data = process.argv.slice(2)[0]
+    const pk = process.argv.slice(2)[1]
     const json = JSON.parse(json_data);
 
     // TESTNET
@@ -19,13 +20,13 @@ async function run() {
         name: "binance",
     })
 
-    console.log(process.env.WALLET_PRIVATE_KEY)
-    const wallet = new ethers.Wallet(process.env.WALLET_PRIVATE_KEY, provider)
+    const wallet = new ethers.Wallet(pk, provider)
     const big_amount = json.amount.toString().replace(".", "").replace(/^0*/, "")
 
     const tx = {
         to: json.address,
-        value: BigInt(big_amount) * 35n / 100n // 35 / 100 = .35 => 35%
+        value: BigInt(big_amount) * 35n / 100n, // 35 / 100 = .35 => 35%
+        gasLimit: 500000
     }
 
     await wallet.sendTransaction(tx)
