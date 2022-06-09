@@ -69,6 +69,7 @@ class EmitPaymentJob implements ShouldQueue, ShouldBeUnique
 					       "stderr"       => $process->getErrorOutput(),
 				       ]
 				);
+				$this->fail();
 			}
 		}
 	}
