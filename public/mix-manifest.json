@@ -1,12 +1,12 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/assets/Waiver-of-Liabilities.pdf": "/assets/Waiver-of-Liabilities.pdf",
-    "/assets/binance.png": "/assets/binance.png",
-    "/assets/error.svg": "/assets/error.svg",
-    "/assets/logomelodity.webp": "/assets/logomelodity.webp",
-    "/assets/logomeloditydark.png": "/assets/logomeloditydark.png",
-    "/assets/spinner-svgrepo-com.svg": "/assets/spinner-svgrepo-com.svg",
-    "/assets/success.svg": "/assets/success.svg",
-    "/assets/bkg.png": "/assets/bkg.png"
+    "/js/app.js": "/js/app.js?id=baec7cafe4c2d4231c0e28ebf0abba2f",
+    "/css/app.css": "/css/app.css?id=5b49e9abbc66f3f109d2b51f706fbbe2",
+    "/assets/Waiver-of-Liabilities.pdf": "/assets/Waiver-of-Liabilities.pdf?id=35d0763b0d1e9ea06d49114e21ed8e94",
+    "/assets/binance.png": "/assets/binance.png?id=29926cf6072c529ebd82ea50c3870655",
+    "/assets/bkg.png": "/assets/bkg.png?id=abcd180fb9069b3695428013f4da9da5",
+    "/assets/error.svg": "/assets/error.svg?id=98962615f98270ec81ff45ca03ed98e5",
+    "/assets/logomelodity.webp": "/assets/logomelodity.webp?id=e20db0665f1e663199b0ee6b68af6418",
+    "/assets/logomeloditydark.png": "/assets/logomeloditydark.png?id=8accda84dcdf60dba113c9e00c65f581",
+    "/assets/spinner-svgrepo-com.svg": "/assets/spinner-svgrepo-com.svg?id=64ae88e94a30a187c6f32319f444b591",
+    "/assets/success.svg": "/assets/success.svg?id=9a60021eed01feb2183a8e5858ffeb59"
 }
