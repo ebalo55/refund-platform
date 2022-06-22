@@ -1,6 +1,6 @@
 <template>
     <header
-        class="my-5 mx-auto container flex justify-center items-center transition-all duration-300 select-none backdrop
+        class="my-5 mx-auto container flex flex-col justify-center items-center transition-all duration-300 select-none backdrop
          rounded-full backdrop bg-white bg-opacity-30 rounded p-3 text-white shadow-lg">
         <nav
             class="xl:mx-10 flex items-center h-16 w-full px-6 transition-all duration-300 container mx-auto"
@@ -18,6 +18,10 @@
                      :class="navAnimationClasses.logo"/>
             </a>
         </nav>
+	    <h3 class="rounded-full px-4 py-2 bg-blue-400 flex items-center">
+		    <img src="../../assets/info.svg" alt="info" class="h-4 object-contain mr-4 stroke-white">
+		    The refund platform will be online until 07 August 2022
+	    </h3>
     </header>
 </template>
 
